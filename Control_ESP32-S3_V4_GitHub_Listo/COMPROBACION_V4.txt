@@ -1,0 +1,36 @@
+Comprobación V4 realizada en este entorno:
+
+1. Estructura del proyecto Android revisada:
+   - android/settings.gradle
+   - android/build.gradle
+   - android/app/build.gradle
+   - android/app/src/main/AndroidManifest.xml
+   - android/app/src/main/java/com/israel/esp32s3bleremote/MainActivity.java
+
+2. Workflow GitHub Actions añadido:
+   - .github/workflows/main.yml
+   - Incluye descarga del repositorio, Java 17, Android SDK, Gradle 8.10.2, compilación Debug y subida del APK como artefacto.
+   - Se evita el fallo anterior de `sdkmanager: command not found` buscando sdkmanager por ruta completa y descargando command line tools si no aparece.
+
+3. App Android V4:
+   - Control BLE por comandos cortos.
+   - Auto reconexión BLE.
+   - Botón WiFi+Web+FTP con comando BLE WIFI_FULL_ON / WIFI_FULL_OFF.
+   - Cámara por Wi-Fi, no por BLE.
+   - Navegador interno para .bin.
+   - OTA por HTTP multipart compatible con el campo `firmware` del sketch.
+
+4. Sketch ESP32-S3 V4:
+   - Añadido comando BLE WIFI_FULL_ON / WIFI_FULL_OFF.
+   - GET_STATE también aceptado como alias de GET_STATUS.
+   - Indicador de batería movido a la derecha.
+   - Hora añadida arriba a la izquierda.
+   - RGB apagado por defecto al arranque.
+
+5. Validación estática realizada:
+   - AndroidManifest.xml parseado correctamente.
+   - Balance de llaves/paréntesis/corchetes comprobado en MainActivity.java.
+   - Balance de llaves/paréntesis/corchetes comprobado en Control_ESP32_S3_V4.ino.
+   - main.yml validado como YAML.
+
+Nota honesta: en este entorno no está instalado Android SDK completo ni Arduino ESP32 core con las librerías de la placa, por lo que no se ha podido ejecutar una compilación real local de APK ni del sketch. El ZIP queda preparado para compilar en GitHub Actions y en ArduinoDroid/Arduino IDE con las librerías del kit.
